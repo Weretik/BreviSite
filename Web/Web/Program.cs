@@ -9,9 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 using Application.Interfaces;
 using Infrastructure.Repositiries;
+using MudBlazor.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMudServices();
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
