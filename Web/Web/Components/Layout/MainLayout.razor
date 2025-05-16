@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="BreviTheme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -11,6 +11,10 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="ml-3">CRM</MudText>
         <MudSpacer />
+        <MudToggleIconButton @bind-Toggled="_isDarkMode"
+                             Icon="@Icons.Material.Filled.DarkMode"
+                             Color="@Color.Inherit"
+                             ToggledIcon="@Icons.Material.Filled.LightMode" />
         <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
     </MudAppBar>
 
@@ -27,12 +31,46 @@
 </MudLayout>
 
 @code {
-
     bool _drawerOpen = false;
+    void DrawerToggle() => _drawerOpen = !_drawerOpen;
 
-    void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
-    }
+    bool _isDarkMode = false;
+    MudTheme BreviTheme = new MudTheme()
+        {
+            PaletteLight = new PaletteLight()
+            {
+                Primary = "#f39200",
+                PrimaryContrastText = "#ffffff",
+
+                Secondary = "#2b2b2b",
+                SecondaryContrastText = "#ffffff",
+
+                Background = "#ffffff",
+                Surface = "#ffffff",
+
+                AppbarBackground = "#2b2b2b",
+                DrawerBackground = "#f5f5f5",
+
+                TextPrimary = "#2b2b2b",
+                TextSecondary = "#666666"
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = "#f39200",
+                PrimaryContrastText = "#000000",
+
+                Secondary = "#ffffff",
+                SecondaryContrastText = "#2b2b2b",
+
+                Background = "#121212",
+                Surface = "#1e1e1e",
+
+                AppbarBackground = "#1e1e1e",
+                DrawerBackground = "#1e1e1e",
+
+                TextPrimary = "#ffffff",
+                TextSecondary = "#bbbbbb"
+            }
+
+        };
 }
-
