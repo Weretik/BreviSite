@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Events\" />
-    <Folder Include="ValueObjectc\" />
+    <Compile Remove="Events\**" />
+    <Compile Remove="ValueObjectc\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <EmbeddedResource Remove="ValueObjectc\**" />
+    <None Remove="Events\**" />
+    <None Remove="ValueObjectc\**" />
   </ItemGroup>
 
   <ItemGroup>

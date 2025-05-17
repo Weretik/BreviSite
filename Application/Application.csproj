@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mapping\**" />
+    <Compile Remove="UseCases\**" />
+    <EmbeddedResource Remove="Mapping\**" />
+    <EmbeddedResource Remove="UseCases\**" />
+    <None Remove="Mapping\**" />
+    <None Remove="UseCases\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="Mapping\" />
-    <Folder Include="UseCases\Commands\" />
-    <Folder Include="UseCases\Queries\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 

@@ -10,6 +10,8 @@ using Domain.Entities;
 using Application.Interfaces;
 using Infrastructure.Repositiries;
 using MudBlazor.Services;
+using Web.Mappings;
+using Web.ViewModels;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,9 +22,19 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
-builder.Services.AddAutoMapper(typeof(ApplicationAssemblyMarker).Assembly);
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ApplicationAssemblyMarker).Assembly));
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddMaps(typeof(ApplicationAssemblyMarker).Assembly);
+    cfg.AddMaps(typeof(WalletViewModelProfile).Assembly);
+});
+
+builder.Services.AddMediatR(cfg => 
+    cfg.RegisterServicesFromAssembly(typeof(ApplicationAssemblyMarker).Assembly
+));
+
 builder.Services.AddValidatorsFromAssembly(typeof(ApplicationAssemblyMarker).Assembly);
+
+builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<BreviDBContext>(options =>

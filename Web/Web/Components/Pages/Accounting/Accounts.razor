@@ -1,0 +1,37 @@
+﻿@page "/wallets"
+@using Application.Wallets.Queries
+@inject IMediator _mediator
+@inject IMapper _mapper
+
+<MudPaper Class="p-4">
+    <MudText Typo="Typo.h5" Class="mb-4">Список кошельков</MudText>
+
+    <MudDataGrid T="WalletViewModel"
+                 Items="@wallets"
+                 Loading="@loading"
+                 Elevation="1">
+        <Columns>
+            <PropertyColumn Property="x => x.Name" Title="Название" />
+            <PropertyColumn Property="x => x.Balance" Title="Баланс" />
+            <PropertyColumn Property="x => x.Notes" Title="Заметка" />
+        </Columns>
+        <PagerContent>
+            <MudDataGridPager T="WalletViewModel" />
+        </PagerContent>
+    </MudDataGrid>
+</MudPaper>
+
+@code {
+    private List<WalletViewModel> wallets = [];
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+
+        var dtoList = await _mediator.Send(new GetAllWalletsQuery());
+        wallets = _mapper.Map<List<WalletViewModel>>(dtoList);
+
+        loading = false;
+    }
+}
