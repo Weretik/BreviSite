@@ -1,42 +1,80 @@
-# BreviSite — Clean Architecture CRM System
+# 🧩 BreviCRM — Internal Business Management System
 
-BreviSite is a business-oriented **CRM application** developed for the Brevi company.  
-Built on modern Blazor Web App (.NET 8) using **Clean Architecture**, it integrates Identity, PostgreSQL, AutoMapper, MediatR, and MudBlazor.
-
----
-
-## 🔧 Technologies & Stack
-
-- Blazor Web App (.NET 8) with interactive components
-- MudBlazor UI components (dialogues, tables, forms, notifications)
-- Entity Framework Core + PostgreSQL
-- ASP.NET Core Identity (custom AppUser)
-- AutoMapper
-- MediatR (CQRS-ready)
-- FluentValidation
-- Clean Architecture (modular layers)
+**BreviCRM** is a modular CRM/ERP-style application developed for internal operations of the Brevi company.  
+It is built using **.NET 8**, **Blazor Web App (Server)**, and follows a **Clean Architecture** approach with strict separation of concerns across layers.
 
 ---
 
-## 🏗️ Architecture Overview
+## ⚙️ Tech Stack
+
+- **.NET 8**, **Blazor Server**, **ASP.NET Core Identity**
+- **CQRS** with **MediatR**
+- **AutoMapper**, **FluentValidation**
+- **Entity Framework Core** + **PostgreSQL**
+- **Tailwind CSS**, **MudBlazor**
+- **Modular monolith** architecture
+
+---
+
+## 📐 Project Structure
 
 ```
-/Web            - UI layer (Blazor components, Pages)
-/Application    - UseCases, DTOs, Validators
-/Domain         - Business entities and interfaces
-/Infrastructure - DbContext, Repositories, Services
+/Web            - Razor UI (Pages, Components)
+/Application    - UseCases, CQRS, DTOs, Validators
+/Domain         - Core business entities and interfaces
+/Infrastructure - Persistence (DbContext), Repositories, Services
 ```
-
-- One-way dependencies: UI → Application → Domain → Infrastructure  
-- Supports interactive UI with Razor components  
-- Ready for integration with background services and API
 
 ---
 
+## 🧮 Key Modules
+
+- **Accounting**  
+  - Wallets  
+  - Income / Expense operations  
+  - Cash register / balance tracking
+
+- **Manager’s Workspace**  
+  - Clients & leads  
+  - Deals and quotes (КП)  
+  - Task tracking and statuses
+
+- **Production / Workshop**  
+  - Sewing schedule  
+  - Salary and payroll tracking  
+  - Fabric and materials
+
+- **System modules**  
+  - Directory management  
+  - Access control (Identity + roles)  
+  - Reports & analytics
+
+---
+
+## 📦 Architectural Highlights
+
+- Modular monolith with layered separation
+- CQRS flow with MediatR and AutoMapper
+- Identity-based authorization with custom roles
+- Razor UI + MudBlazor for rich interactions
+- GitHub Copilot Agent integrated to speed up boilerplate generation
+
+---
+
+## 📌 Project Status
+
+✅ Base architecture & infrastructure complete  
+✅ Wallets module in progress  
+🔜 Income/Expense tracking  
+🔜 Manager dashboard  
+🔜 Role-based permissions  
+🔜 Reports and KPIs
+
+---
 
 ## 🔒 License
 
-This source code is private and intended for internal use at Brevi.  
-Reproduction or reuse without permission is not allowed.
+This codebase is private and developed for internal use at Brevi.  
+Reproduction or redistribution without explicit permission is prohibited.
 
 © 2025 Brevi
